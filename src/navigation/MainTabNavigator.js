@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../constants';
 
-// Placeholder screens - las crearemos después
-import ChatScreen from '../screens/chat/ChatScreen';
+// Screens
+import ChatScreen from '../screens/ChatScreen';
 import DashboardScreen from '../screens/dashboard/DashboardScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 
