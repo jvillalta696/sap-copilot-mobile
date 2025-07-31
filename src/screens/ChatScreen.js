@@ -18,7 +18,7 @@ import {
   SuggestionPanel 
 } from '../components/chat';
 import { colors } from '../constants/colors';
-import { useAnimations } from '../hooks/useAnimations';
+import { useSlideInAnimation } from '../hooks/useAnimations';
 
 const ChatScreen = () => {
   const navigation = useNavigation();
@@ -37,7 +37,7 @@ const ChatScreen = () => {
   const [showSuggestions, setShowSuggestions] = useState(true);
   
   // Animaciones para la entrada de mensajes
-  const { fadeInUp, isAnimating } = useAnimations();
+  const slideInStyle = useSlideInAnimation(0);
 
   // Simular respuesta del bot
   const simulateBotResponse = useCallback(async (userMessage) => {
@@ -100,17 +100,8 @@ const ChatScreen = () => {
     <ChatMessage 
       message={item} 
       index={index}
-      style={{ 
-        opacity: fadeInUp,
-        transform: [{ 
-          translateY: fadeInUp.interpolate({
-            inputRange: [0, 1],
-            outputRange: [20, 0],
-          })
-        }]
-      }}
     />
-  ), [fadeInUp]);
+  ), []);
 
   const renderFooter = useCallback(() => (
     <View style={styles.footerContainer}>

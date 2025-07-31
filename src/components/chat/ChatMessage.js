@@ -5,21 +5,18 @@ import { colors } from '../../constants';
 
 const ChatMessage = ({ 
   message, 
-  isUser = false, 
-  timestamp, 
-  isTyping = false,
+  index,
   animatedValue = new Animated.Value(0)
 }) => {
+  const { text, isUser, timestamp } = message;
   React.useEffect(() => {
-    if (!isTyping) {
-      Animated.spring(animatedValue, {
-        toValue: 1,
-        tension: 100,
-        friction: 8,
-        useNativeDriver: true,
-      }).start();
-    }
-  }, [animatedValue, isTyping]);
+    Animated.spring(animatedValue, {
+      toValue: 1,
+      tension: 100,
+      friction: 8,
+      useNativeDriver: true,
+    }).start();
+  }, [animatedValue]);
 
   const messageStyle = {
     transform: [
@@ -62,14 +59,14 @@ const ChatMessage = ({
               styles.messageText,
               isUser ? styles.userMessageText : styles.botMessageText
             ]}>
-              {message}
+              {text}
             </Text>
-            {timestamp && (
+                        {timestamp && (
               <Text style={[
                 styles.timestamp,
                 isUser ? styles.userTimestamp : styles.botTimestamp
               ]}>
-                {timestamp}
+                {new Date(timestamp).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
               </Text>
             )}
           </Card.Content>
